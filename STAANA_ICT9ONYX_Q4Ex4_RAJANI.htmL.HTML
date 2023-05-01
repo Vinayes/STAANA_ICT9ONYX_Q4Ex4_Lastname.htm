@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Measurement Converter</title>
+  <!-- Include Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Measurement Converter</h1>
+    <div class="form-group">
+      <label for="measurement">Measurement:</label>
+      <select class="form-control" id="measurement">
+        <option value="length">Length</option>
+        <option value="time">Time</option>
+        <option value="temperature">Temperature</option>
+        <option value="mass">Mass</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="value">Value:</label>
+      <input type="number" class="form-control" id="value" placeholder="Enter value">
+    </div>
+    <button type="button" class="btn btn-primary" onclick="convert()">Convert</button>
+    <div class="form-group">
+      <label for="result">Result:</label>
+      <input type="text" class="form-control" id="result" readonly>
+    </div>
+  </div>
+  <!-- Include Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script>
+    function convert() {
+      // Get the selected measurement type
+      var measurement = document.getElementById("measurement").value;
+      // Get the input value
+      var value = document.getElementById("value").value;
+      // Convert the value based on the selected measurement type
+      switch (measurement) {
+        case "length":
+          var result = value * 0.3048; // Convert feet to meters
+          break;
+        case "time":
+          var result = value * 60; // Convert minutes to seconds
+          break;
+        case "temperature":
+          var result = (value - 32) * 5 / 9; // Convert Fahrenheit to Celsius
+          break;
+        case "mass":
+          var result = value * 0.45359237; // Convert pounds to kilograms
+          break;
+        default:
+          var result = 0;
+      }
+      // Set the result
+      document.getElementById("result").value = result;
+    }
+  </script>
+</body>
+</html>
